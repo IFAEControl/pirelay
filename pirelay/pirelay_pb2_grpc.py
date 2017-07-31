@@ -4,6 +4,7 @@ import grpc
 import .pirelay_pb2 as pirelay__pb2
 
 
+
 class PiRelayStub(object):
   """The greeting service definition.
   """
