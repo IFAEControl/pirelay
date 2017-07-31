@@ -29,12 +29,10 @@
 
 """The Python implementation of the GRPC helloworld.Greeter client."""
 
-from __future__ import print_function
-
 import grpc
 
-import pirelay_pb2
-import pirelay_pb2_grpc
+from . import pirelay_pb2
+from . import pirelay_pb2_grpc
 
 
 class Client(object):
