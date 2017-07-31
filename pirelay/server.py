@@ -34,8 +34,8 @@ import time
 
 import grpc
 
-from .grpc import pirelay_pb2
-from .grpc import pirelay_pb2_grpc
+import pirelay_pb2
+import pirelay_pb2_grpc
 
 from .relay import RelaysArray
 

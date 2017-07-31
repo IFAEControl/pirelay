@@ -33,8 +33,8 @@ from __future__ import print_function
 
 import grpc
 
-from .grpc import pirelay_pb2
-from .grpc import pirelay_pb2_grpc
+import pirelay_pb2
+import pirelay_pb2_grpc
 
 
 class Client(object):
