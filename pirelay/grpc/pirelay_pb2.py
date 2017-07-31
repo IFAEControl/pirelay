@@ -3,6 +3,7 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -19,9 +20,34 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='pirelay.proto',
   package='pirelay',
   syntax='proto3',
-  serialized_pb=_b('\n\rpirelay.proto\x12\x07pirelay\"!\n\x0ePiRelayChannel\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\r\"1\n\x0ePiRelaysAnswer\x12\x0e\n\x06\x61nswer\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x07\n\x05\x45mpty2\x86\x01\n\x07PiRelay\x12<\n\x06\x45nable\x12\x17.pirelay.PiRelayChannel\x1a\x17.pirelay.PiRelaysAnswer\"\x00\x12=\n\x07\x44isable\x12\x17.pirelay.PiRelayChannel\x1a\x17.pirelay.PiRelaysAnswer\"\x00\x42(\n\x10\x63\x61t.ifae.pirelayB\x0cPiRelayProtoP\x01\xa2\x02\x03HLWb\x06proto3')
+  serialized_pb=_b('\n\rpirelay.proto\x12\x07pirelay\"!\n\x0ePiRelayChannel\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\r\"D\n\x0ePiRelaysAnswer\x12!\n\x04type\x18\x01 \x01(\x0e\x32\x13.pirelay.AnswerType\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x07\n\x05\x45mpty*\x1f\n\nAnswerType\x12\x06\n\x02Ok\x10\x00\x12\t\n\x05\x45rror\x10\x01\x32\x86\x01\n\x07PiRelay\x12<\n\x06\x45nable\x12\x17.pirelay.PiRelayChannel\x1a\x17.pirelay.PiRelaysAnswer\"\x00\x12=\n\x07\x44isable\x12\x17.pirelay.PiRelayChannel\x1a\x17.pirelay.PiRelaysAnswer\"\x00\x42(\n\x10\x63\x61t.ifae.pirelayB\x0cPiRelayProtoP\x01\xa2\x02\x03HLWb\x06proto3')
 )
 
+_ANSWERTYPE = _descriptor.EnumDescriptor(
+  name='AnswerType',
+  full_name='pirelay.AnswerType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='Ok', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Error', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=140,
+  serialized_end=171,
+)
+_sym_db.RegisterEnumDescriptor(_ANSWERTYPE)
+
+AnswerType = enum_type_wrapper.EnumTypeWrapper(_ANSWERTYPE)
+Ok = 0
+Error = 1
 
 
 
@@ -64,9 +90,9 @@ _PIRELAYSANSWER = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='answer', full_name='pirelay.PiRelaysAnswer.answer', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='type', full_name='pirelay.PiRelaysAnswer.type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -90,7 +116,7 @@ _PIRELAYSANSWER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=61,
-  serialized_end=110,
+  serialized_end=129,
 )
 
 
@@ -113,13 +139,15 @@ _EMPTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=112,
-  serialized_end=119,
+  serialized_start=131,
+  serialized_end=138,
 )
 
+_PIRELAYSANSWER.fields_by_name['type'].enum_type = _ANSWERTYPE
 DESCRIPTOR.message_types_by_name['PiRelayChannel'] = _PIRELAYCHANNEL
 DESCRIPTOR.message_types_by_name['PiRelaysAnswer'] = _PIRELAYSANSWER
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.enum_types_by_name['AnswerType'] = _ANSWERTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PiRelayChannel = _reflection.GeneratedProtocolMessageType('PiRelayChannel', (_message.Message,), dict(

@@ -54,11 +54,10 @@ class PiRelayServer(pirelay_pb2_grpc.PiRelayServicer):
         try:
             self._relays.enable(request.channel)
         except Exception as ex:
-            ans = 'error'
-            return pirelay_pb2.PiRelaysAnswer(answer=ans,
+            return pirelay_pb2.PiRelaysAnswer(type=pirelay_pb2.Error,
                                               message=str(ex))
         else:
-            return pirelay_pb2.PiRelaysAnswer(answer="ok",
+            return pirelay_pb2.PiRelaysAnswer(type=pirelay_pb2.Ok,
                                               message="")
 
     def Disable(self, request, context):
@@ -66,11 +65,10 @@ class PiRelayServer(pirelay_pb2_grpc.PiRelayServicer):
         try:
             self._relays.disable(request.channel)
         except Exception as ex:
-            ans = 'error'
-            return pirelay_pb2.PiRelaysAnswer(answer=ans,
+            return pirelay_pb2.PiRelaysAnswer(type=pirelay_pb2.Error,
                                               message=str(ex))
         else:
-            return pirelay_pb2.PiRelaysAnswer(answer="ok",
+            return pirelay_pb2.PiRelaysAnswer(type=pirelay_pb2.Ok,
                                               message="")
 
 

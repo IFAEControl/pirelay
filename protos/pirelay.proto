@@ -18,10 +18,15 @@ service PiRelay {
 message PiRelayChannel {
   uint32 channel = 1;
 }
+enum AnswerType{
+      Ok = 0;
+      Error = 1;
+};
 
-// The response message containing the greetings
+// The response message
 message PiRelaysAnswer {
-  string answer = 1;
+
+  AnswerType type = 1;
   string message = 2;
 }
 

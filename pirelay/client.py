@@ -37,13 +37,22 @@ from .grpc import pirelay_pb2
 from .grpc import pirelay_pb2_grpc
 
 
-def run():
-  channel = grpc.insecure_channel('localhost:50051')
-  stub = pirelay_pb2_grpc.GreeterStub(channel)
-  response = stub.SayHello(pirelay_pb2.HelloRequest(name='you'))
-  print("Greeter client received: " + response.message)
-  response = stub.SayHelloAgain(pirelay_pb2.HelloRequest(name='you'))
-  print("Greeter client received: " + response.message)
+class Client(object):
+    def __init__(self, ip):
+        self._channel = grpc.insecure_channel('{}:50051'.format(ip))
 
-if __name__ == '__main__':
-  run()
+    def enable(self, channel):
+        stub = pirelay_pb2_grpc.PiRelayStub(self._channel)
+        response = stub.Enable(pirelay_pb2.PiRelayChannel(channel=channel))
+
+        if response.type == pirelay_pb2.Error:
+            raise Exception(response.message)
+
+    def disable(self, channel):
+        stub = pirelay_pb2_grpc.PiRelayStub(self._channel)
+        response = stub.Disable(pirelay_pb2.PiRelayChannel(channel=channel))
+
+        if response.type == pirelay_pb2.Error:
+            raise Exception(response.message)
+
+
