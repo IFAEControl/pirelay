@@ -31,8 +31,8 @@
 
 import grpc
 
-from . import pirelay_pb2
-from . import pirelay_pb2_grpc
+from .protos import pirelay_pb2
+from .protos import pirelay_pb2_grpc
 
 
 class Client(object):
