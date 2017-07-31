@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cat.ifae.pirelay";
+option java_outer_classname = "PiRelayProto";
+option objc_class_prefix = "HLW";
+
+package pirelay;
+
+// The greeting service definition.
+service PiRelay {
+  // Sends a greeting
+  rpc Enable (PiRelayChannel) returns (PiRelaysAnswer) {}
+  rpc Disable (PiRelayChannel) returns (PiRelaysAnswer) {}
+}
+
+// The request message containing the user's name.
+message PiRelayChannel {
+  uint32 channel = 1;
+}
+
+// The response message containing the greetings
+message PiRelaysAnswer {
+  string answer = 1;
+  string message = 2;
+}
+
+message Empty {
+
+}
